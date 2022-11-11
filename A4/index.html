@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment 4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h2>Assignment 4</h2>
+
+    <section>
+      <h3>Introduction</h3>
+      <p>It is time for <b>d3.js</b>! In this assignment you will learn about 
+      how to link multiple visualizations with each other. For this, you will 
+      implement two standard visualizations that have been introduced in the 
+      lecture with d3.js: The scatter plot matrix and the parallel coordinates. 
+      These two separate visualizations will then be connected with <b>brushing & 
+      linking</b>, so the interaction technique that reflects a user's selection 
+      in one view to all other views.</p>
+      <div id="visualization"></div>
+      </section>
+
+      <section>
+        <h3>Implement the scatter plot matrix</h3>
+        <p>
+          In a scatter plot matrix, each attribute is assigned to one column
+          and one row of a matrix such that each cell contains a combination 
+          of two attributes that are then depicted by a scatter plot. 
+        </p>  
+        <p>
+          For this task, it might be helpful to either use a nested for loop or
+          look at the various array functions d3 provides; especially 
+          <a href="https://github.com/d3/d3-array#cross">d3.cross()</a> will 
+          be of great help in this case. 
+        </p>
+        <p>
+          Regarding coloration, a look at 
+          <a href="https://observablehq.com/@d3/d3-scaleordinal">d3.scaleOrdinal</a>
+          will support you greatly. It solidifies the information shown to you
+          regarding how to apply color to data items in the lab class. 
+        </p>
+        <p>
+          Please, always keep the legibility in mind! So, please, do not
+          forget to add labels to the plot, so that the attribute of each 
+          row and column is clear. You can orient yourselves at the scatter
+          plot matrix shown in the Lecture 4: Multi-Attribute Visualization.
+        </p>
+        <p>
+          Hint: Since the scatter plot matrix shown in Lecture 4 uses the 
+          same dataset, you can also verify your implementation with it. 
+        </p>
+        
+        <div class="task">
+            <h3>Task 1: Implement the scatter plot matrix (30%)</h3>
+            <p>
+              Write code for a scatter plot matrix for the attributes 
+              <b>sepal_length</b>, <b>sepal_width</b>, <b>petal_length</b>,
+              and <b>petal_width</b>. The attribute <b>species</b> should
+              be used as color attribute. Please, use the given 
+              <code>div#visualization</code> as parent element.
+            </p> 
+            <p>
+              You are of course allowed to look at examples of scatter plot
+              matrixes done in d3 in the web. You are free to take ideas from 
+              web examples, but we require you to write your own code. 
+            </p>
+          </div>
+      </section>
+
+
+    <section>
+      <h3>Implement the parallel coordinates plot</h3>
+      <p>
+        In contrast to scatter plot matrixes, in a parallel coordinates plot 
+        each attribute is represented by a single axis parallel to all others 
+        and each data item shows as a polyline instead of a point. 
+      </p>
+      <p>
+        To implement the PCP, you will need a storage (for example a
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">map</a>)
+        to hold your scales for each axis. The usage of an JavaScript
+        object is not recommended here, since it is not iterable and, 
+        therefore, cannot be used to create the axes with the usual 
+        join pattern. 
+      </p>
+      <p>
+        Another useful tool, provided by d3 is the 
+        <a href="https://observablehq.com/@d3/d3-line">d3.line</a> function, 
+        that -- given an array of [x,y] values -- creates a string for an 
+        SVG (cor canvas) path, that can then be used inside a SVG path element's 
+        <b>d</b> attribute.
+      </p>
+      
+      <div class="task">
+        <h3>Task 2: Implement the parallel coordinates plot (30%)</h3>
+        <p>
+          Realize the parallel coordinate plot with the same attributes as the 
+          scatter plot matrix: <b>sepal_length</b>, <b>sepal_width</b>, 
+          <b>petal_length</b>, and <b>petal_width</b>. 
+          The attribute <b>species</b> should, also, be used as color attribute.
+          As before, use the given 
+          <code>div#visualization</code> as parent element.
+        </p>
+        <p>
+          Again, you are free to take ideas from 
+          web examples, but we require you to write your own code. 
+        </p>
+      </div>
+    </section>
+
+    
+
+    <section>
+      <h3>Brushing & Linking</h3>
+      
+      <p>
+        To benefit more from both views and better understand how 
+        a scatter plot would translate into parallel coordinates and 
+        the other way around, linking selections of both visualizations
+        is essential. 
+      </p>
+      <p>
+        The example of a brush within a single scatter plot has already 
+        given you some hints as to how a d3.brush can be used. Other examples 
+        in various contexts can be found 
+        <a href="https://observablehq.com/collection/@d3/d3-brush">here</a>.
+        Please note, that there is not only d3.brush, but also d3.brushX and 
+        d3.brushY which might make more sense in the context of the parallel 
+        coordinates plot. 
+      </p>
+      <div class="task">
+          <h3>Task 3: Brushing & Linking (40%)</h3>
+          <p>
+            Connect the scatter plots within the scatter plot matrix 
+            and the parallel coordinates with <b>brushing & linking</b>,
+            such that selected data in the PCP will be reflected onto
+            the all the plots of the scatter plot matrix and vise versa.
+          </p>
+        </div>
+    </section>
+
+    <script type="module" src="./index.js"></script>
+
+    </main>
+  </body>
+</html>

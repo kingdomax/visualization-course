@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Assignment 6</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1><a href="/">Visualization Lab Class</a></h1>
+        <h2>Assignment 6</h2>
+
+        <p>Text visualizations became more popular with the growing amounts 
+            of digitized, textual data. These kinds of visualizations explain 
+            relations between textual entities, abstract and summarize text passages
+            and aim for giving users information about the text to help them find
+            relevant text passages more quickly.
+        </p>
+        <p>In this exercise, you will focus on the implementation and data preparation for 
+            <b>word clouds</b>. 
+        </p>
+
+        <section>
+            <h3>Word Clouds</h3>
+            <p>A Word Cloud is a nice, yet imprecise way to have a look at the textual contents
+                of our data. To get an overview of the movies in our movie database, we will create
+                one Word Cloud per genre based on the movie descriptions.
+            </p>
+            <p>
+                In a first step, you will implement the word cloud using the library <a href="https://github.com/jasondavies/d3-cloud">d3-cloud</a>. 
+                An example 
+                of how to use it can be found on <a href="https://observablehq.com/@d3/word-cloud">Observable</a>. 
+                As always, you are not allowed to copy the function, but you can take inspiration from 
+                it and adapt it to your needs. 
+            </p>
+
+            <div class="task">
+                <h3>Task 1: Word Cloud Implementation (40%)</h3>
+                <p>Implement the missing parts of the word cloud implementation in the <code>wordcloud.js</code>. 
+                    Your implementation will automatically be feed with the fake data given in the 
+                    <code>index.js</code>, such that you can test. The fake data will be replaced in <b>Task 3</b>
+                    with real data from film descriptions.
+                </p>
+            </div>
+
+            <select id="genre"></select>
+            <svg id="wordcloud"></svg>
+        </section>
+
+        <section>
+            <h3>Word Vectors</h3>
+            <p>In order to create most text-based visualizations, first we need to transform 
+            each input document - the movie's description in our case - to a word vector. 
+            </p>
+            <p>
+            There are several ways to define a word vector. In the lecture, you have been
+            introduced to the sparse version. To safe the browsers internal memory, we will use 
+            the dense representation. In this representation, the word and its value is stored.
+            Let's consider the following example of a well known film quote: <i>"Bond. James Bond."</i>. 
+            The dense word vector using word count as value would look like this: 
+            <i>[["Bond", 2], ["James", 1]]</i>, since the term <i>Bond</i> figures two times in the quote, while 
+            <i>James</i> occurs only once.</p>
+            <p> 
+            The word count is a simple measure, but it emphasizes common words like <i>and</i> since these 
+            words have a high word count. To mitigate that, we will use the <i>tf-idf</i> score
+            instead. The score expresses, how much a term helps to distinguish one document from 
+            any other document.</p>
+            <p>In the <i>tf-idf</i> score, <i>tf</i> stands for term frequency and is the word count 
+            weighted by the total number of words in the document, aka movie description: <br>
+            <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/dd4f8a91dd0d28a11c00c94a13a315a5b49a8070"/>,<br>
+            <i>f</i>  is the word count of a term <i>t</i> in document <i>d</i>.
+            </p> 
+            <p>
+            <i>idf</i> stands for the inverse document frequency and is calculated 
+            by counting the number of documents, the term occurs in, weight it by the overall number
+            of documents and invert the result. To ensure that frequent terms are weighted less, usually
+            the log of the inverse document frequency is used: <br>
+            <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ac67bc0f76b5b8e31e842d6b7d28f8949dab7937"/><br>
+            where <i>N</i> is the total number of documents in corpus <i>D</i> and <i>t</i> is again the term/word.
+            </p>
+            <p>
+                The <i>tf-idf</i> is then calculated by multiplying <i>tf</i> and <i>idf</i>:<br>
+                <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/10109d0e60cc9d50a1ea2f189bac0ac29a030a00"/><br>
+            
+            The formulas are taken from the
+            <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf page on Wikipedia</a>. 
+            I have also prepared an Observable page that shows an 
+            <a href="https://observablehq.com/d/11e84bd9a759f575">example of how to calculate the tf-idf scores</a>.
+            </p>
+
+
+            <div class="task">
+                <h3>Task 2: Word Vectors (40%)</h3>
+                <p>Transform each of the given movie's descriptions to a dense word vector 
+                    using the tf-idf score. For this, first calculate all <i>idf</i> values
+                    by completing the <code>inverseDocumentFrequency</code> function in the 
+                    <code>wordvector.js</code>file. It will fill a map, in which the idf 
+                    value for each term of the corpus is stored. </p>
+                    <p>
+                    In a second step complete the <code>tfidf</code> function in the 
+                    <code>wordvector.js</code>file, which
+                    is supposed to transform a movie description, that has already been broken 
+                    into single words, 
+                    to a dense word vector. </p>
+                    <p>
+                    Once the tf-idf score is implemented,
+                    the visualization below shows the 15 words 
+                    with the highest tf-idf scores for 10 movies.
+                    For now it shows the first 15 words in the movie's description.
+                    You can use it to check your implementation. 
+                    </p>
+                    <p>If you like to compare numbers, this would be the first 5 entries of the correct word vector of the film <b>Four Rooms</b>:
+                    [
+                    [
+                        "bellhop",
+                        0.43
+                    ],
+                    [
+                        "predicaments",
+                        0.43
+                    ],
+                    [
+                        "unbelievable",
+                        0.39
+                    ],
+                    [
+                        "evening",
+                        0.31
+                    ],
+                    [
+                        "ted",
+                        0.31
+                    ]
+                    ]
+                    </p>
+            </div>
+            <svg id="dots"></svg>
+        </section>
+
+        <section>
+            <h3>Word Cloud Preparation</h3>
+            <p>Now, lets connect <b>Task 1</b> and <b>Task 2</b>! Using the function for tf-idf in 
+                combination with the word cloud function, 
+                we can now explore the most frequent words used in the descriptions of films per 
+                genre. 
+            </p>
+            
+            <div class="task">
+                <h3>Task 3: Word Cloud preparation (20%)</h3>
+                <p>Calculate the tf-idf scores for all film descriptions per genre in 
+                    the <code>main.js</code>.</p>
+                    <p>For this, first generate a word array for each genre by concatenating the word arrays 
+                        of that genre's movies.</p> 
+                    <p>Then calculate first the idf 
+                    values of all words of using the genre word arrays and finally the word 
+                    vectors with tf-idf values.</p>
+                    <p>To visualize the data, insert your calculated data into the 
+                        <code>wordcloud</code> function in the <code>index.js</code>.
+                    </p>
+                    <p>The list of genres is 
+                    already prepared for you in the <code>main.js</code>. </p>
+            </div>
+        </section>
+
+    </main>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>

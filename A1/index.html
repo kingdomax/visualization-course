@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Excercise 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/stylesheet/style.css">
+  </head>
+  <body>
+    <main>
+      <h2>Exercise 1</h2>
+
+      <section>
+        <h3>Introduction</h3>
+        <p>In this exercise, we will basically go over all the 
+          things shown in the first lab class. You will set up your
+          working directory, load data and visualize it using the 
+          <emph>vega-lite-api</emph>.</p>
+          <p>Once you finish your work, you delete the npm_packages 
+            folder (you can recreate it by simply calling "npm install"
+            on the command line), zip this folder and upload it to the 
+            exercise on the Moodle page. 
+          </p>
+        </section>
+
+      <section>
+        <h3>Setup</h3>
+        <p>First, you need to install <a href="https://www.npmjs.com/">npm</a>:
+          <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">Install guide</a>.
+          After successful installation, run <code>npm init</code> 
+          to enable npm usage.</p>
+        <p>Then, you need to install a development server.
+          We will be using <a href="https://www.snowpack.dev/">snowpack</a>.
+          For basic installation and setup, please follow 
+          <a href="https://www.snowpack.dev/tutorials/getting-started">this guide</a>.
+        </p>
+        <p>
+          Finally, you need to install <emph>d3</emph>, <emph>vega</emph>, <emph>vega-lite</emph> 
+          and the <emph>vega-lite-api</emph>.
+        </p>
+        <div class="task">
+          <h3>Task 1: Setup (40%)</h3>
+          <p>
+            Setup your working directory such that <emph>npm</emph> and 
+            <emph>snowpack</emph> are working and the <emph>vega-lite-api</emph>
+            is ready to use. Test your setup by running <code>npm run start</code>
+            to serve this page via snowpack.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h3>Load Data</h3>
+        <p>To visualize data, you need to load it to the webpage first. You will
+          be working wiht the cars dataset in <code>data/cars.csv</code>. Remember:
+          in the lab class, we used <a href="https://github.com/d3/d3-fetch/blob/main/README.md#csv">d3.csv</a> 
+          to load the data and <a href="https://observablehq.com/@d3/d3-autotype">d3.autotype</a>
+          to convert the values to their respective types.</p>
+          <div class="task">
+            <h3>Task 2: Load Data (10%)</h3>
+            <p>
+              Load the dataset from <code>data/cars.csv</code> and 
+              print it to the web developer console using 
+              <code>console.log(...)</code>.
+            </p>
+          </div>
+      </section>
+
+      <section>
+        <h3>Analyse the Data</h3>
+        <p>First, work through the following Observable pages of the <emph>vega-lite-api</emph>:
+          <ul>
+            <li><a href="https://observablehq.com/@uwdata/introduction-to-vega-lite">Introduction to Vega-Lite</a></li>
+            <li><a href="https://observablehq.com/@uwdata/data-types-graphical-marks-and-visual-encoding-channels">Data Types, Graphical Marks, and Visual Encoding Channels</a></li>
+            <li><a href="https://observablehq.com/@uwdata/data-transformation?collection=@uwdata/visualization-curriculum">Data Transformation</a></li>
+          </ul>
+          You can of course have a look at the other pages of the visualization-curriculum, as well.
+        </p>
+        <p>
+          Then, use the <emph>vega-lite-api</emph> to analyze the cars dataset to answer the following questions:
+          <ol>
+            <li>
+              <div>
+                <div>
+                  Find a positive and a negative correlation in the data (Hint: scatterplots are useful here).
+                </div>
+                <img src="images/question1.png" alt="">
+              </div>
+            </li>
+            <li>
+              <div>
+                <div>
+                  Is there a trend in miles per gallon over time? 
+                </div>
+                <img src="images/question2.png" alt="">
+              </div>
+            </li>
+            <li>
+              <div>
+                <div>
+                  What is the average horsepower per country?
+                </div>
+                <img src="images/question3.png" alt="">
+              </div>
+            </li>
+            <li>
+              <div>
+                <div>
+                  Is there a trend in the number of cars build 
+                  per year and country?
+                </div>
+                <img src="images/question4.png" alt="">
+              </div>
+            </li>
+          </ol>
+          Remember: Before using the <emph>vega-lite-api</emph>, you need to import 
+          vega, vega-lite and the vega-lite-api and call
+          <code>vl.register(vega, vegaLite, {})</code>. 
+        </p>
+          <div class="task">
+            <h3>Task 3: Analyze the Data (50%)</h3>
+            <p>
+              Learn the basics on how to use the <emph>vega-lite-api</emph> and 
+              answer the questions to the cars dataset by replacing the dummy 
+              charts with screenshots of charts that answer the question.     
+            </p>
+            <p>Hint: store your screenshots in the <code>images</code> folder
+            and replace the <code>src=""</code> attribute of each <code>img</code>
+          tag.</p>
+          </div>
+      </section>
+
+    </main>
+  </body>
+</html>

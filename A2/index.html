@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h2>Assignment 2</h2>
+
+    <section>
+      <h3>Introduction</h3>
+      <p>This assignment is meant to introduce you to the task
+        of <i>exploratory visual analytics</i>. It is your task 
+        to explore the provided database about weather stats from 
+        stations throughout Germany using and extending the 
+        techniques you used in the last assignment with the
+        <emph>vega-lite-api</emph>.</p>
+        <p>Once you finish your work, you delete the npm_packages 
+          folder (you can recreate it by simply calling "npm install"
+          on the command line), zip this folder and upload it to the 
+          exercise on the Moodle page. 
+        </p>
+      </section>
+
+      <section>
+        <h3>Extend your vega-lite-api skills</h3>
+        <p>Work through the remaining Observable pages of the <emph>vega-lite-api</emph>:
+          <ul>
+            <li><a href="https://observablehq.com/@uwdata/scales-axes-and-legends?collection=@uwdata/visualization-curriculum">Scales, Axes, and Legends</a></li>
+            <li><a href="https://observablehq.com/@uwdata/multi-view-composition?collection=@uwdata/visualization-curriculum">Multi-View Composition</a></li>
+            <li><a href="https://observablehq.com/@uwdata/interaction?collection=@uwdata/visualization-curriculum">Interaction</a></li>
+            <li><a href="https://observablehq.com/@uwdata/cartographic-visualization?collection=@uwdata/visualization-curriculum">Cartographic Visualization</a></li>
+          </ul>
+        </p>  
+        
+        <div class="task">
+            <h3>Task 1: Learn more about the vega-lite-api</h3>
+            <p>
+              Extend your skill set and train it with mini tasks given on 
+              each Observable page. 
+            </p>
+          </div>
+      </section>
+
+
+    <section>
+      <h3>Questions to the dataset</h3>
+      <p>Before you get started, take a look at the csv file
+        under <code>data/daily_climate_summary_no_missing_identical_first_entry.csv</code>
+        and think of three questions you would like to know from 
+        the data.
+      </p>
+      <p>
+        Please, formulate questions that can be answered by a visualization and
+        do not ask the same kind of question twice. So if you asked 
+        "is there a relation between PRESSURE_AIR and TEMPERATURE_AIR?"
+        then, do not ask the same question for another pair of attributes.
+        Hint: Interesting things might be finding trends temperatures over the years, 
+        stations that stick out or group, or relations between seasons. 
+      </p>
+      <div class="task">
+        <h3>Task 2: Questions to the dataset (36%)</h3>
+        <p>
+          Please, complete the html list below with your 3 questions 
+          for the dataset before actually analyzing the data. 
+        </p>
+
+        <p>
+          Your questions:
+          <ul>
+            <li>
+              Question 1: Is there a trend in TEMPERATURE_AIR within a year ?
+            </li>
+            <li>
+              Question 2: Do these SUNSHINE_DURATION, PRESSURE_AIR and HUMIDITY affect TEMPERATURE_AIR within a year ?
+            </li>
+            <li>
+              Question 3: What is the average TEMPERATURE_AIR for each station ?
+            </li>
+          </ul>
+        </p>
+      </div>
+    </section>
+
+    
+
+    <section>
+      <h3>Analyse the Data</h3>
+      
+      <p>
+        Then, use the <emph>vega-lite-api</emph> to analyze the weather dataset to answer your questions.
+        
+        Remember: Before using the <emph>vega-lite-api</emph>, you need to import 
+        vega, vega-lite and the vega-lite-api and call
+        <code>vl.register(vega, vegaLite, {})</code>. 
+      </p>
+      <div id="example">You can adapt the following base 
+        example showing the time frames in which weather data
+        have been recorded per weather station for 10 preselected
+        stations.
+      </div>
+        <div class="task">
+          <h3>Task 3: Analyze the Data (36%)</h3>
+          <p>
+            For each of your questions, provide at least 
+            one chart to answer the question. Some questions 
+            might need more then one chart to answer. Attach
+            your chart to the <code>div</code> elements below.
+          </p>
+        </div>
+
+        <div id="q1">Question 1:</div>
+        <div id="q2">Question 2:</div>
+        <div id="q3">Question 3:</div>
+
+    </section>
+
+    <section>
+      <h3>Exploring deeper</h3>
+      <p>
+        Now that you have seen the data, several new questions
+        might have come to your mind. More complex questions
+        need more complex views to answer them. For this the 
+        composite views -- so views including multiple views at 
+        once like a view of the standard deviation 
+        on bar charts, or max, min and average values in a line 
+        chart -- are a very good choice. 
+      </p>
+        <div class="task">
+          <h3>Task 4: Exploring deeper (28%)</h3>
+          <p>
+            Formulate one 
+            of these more complex questions, that arose while 
+            exploring the data, and try to answer it with a
+            composite view.      
+          </p>
+        </div>
+
+        <div id="composite"></div>
+    </section>
+
+    <script type="module" src="./index.js"></script>
+
+    </main>
+  </body>
+</html>
